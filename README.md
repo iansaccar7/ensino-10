@@ -14,12 +14,13 @@ Acesse http://localhost:8000.
 
 ## Mudanças desta versão (para o GitHub)
 
-Novos:
+Novos (fotos dos depoimentos):
 
 ```text
-colegios.jpg
-colegios-celular.jpg
-textura-laranja.jpg
+fotos/depo-claudia.jpg
+fotos/depo-tatiane.jpg
+fotos/depo-tessia.jpg
+fotos/depo-viviane.jpg
 ```
 
 Alterados:
@@ -28,24 +29,9 @@ Alterados:
 README.md
 index.html
 style.css
-script.js
-textura-hero.jpg
-textura-creme.jpg
-fotos/apoio-escolar.jpg
-fotos/como-funciona.jpg
 ```
 
-Apagados (tirar também do repositório):
-
-```text
-textura-amarela.jpg
-fotos/depo-claudia.jpg
-fotos/depo-isinha.jpg
-fotos/depo-tessia.jpg
-fotos/depo-viviane.jpg
-```
-
-Na pasta, `git add -A` pega os três grupos de uma vez, inclusive os apagados.
+Nenhum arquivo apagado. Na pasta, `git add -A` pega tudo.
 
 ## Arquivos para o repositório
 
@@ -88,6 +74,10 @@ fotos/alfabetizacao.jpg
 fotos/preparatorio.jpg
 fotos/academia-online.jpg
 fotos/conexao-60.jpg
+fotos/depo-claudia.jpg
+fotos/depo-viviane.jpg
+fotos/depo-tatiane.jpg
+fotos/depo-tessia.jpg
 ```
 
 O `canonical`, as tags `og:` e os dados estruturados apontam para `https://ensino10.com.br/`. O `og:image` usa `https://ensino10.com.br/og-ensino10.png` (logo sobre fundo branco, 1200 × 630), então o site precisa ser publicado na raiz do domínio.
@@ -100,9 +90,10 @@ Todos os botões de WhatsApp levam a `https://wa.me/5511976004439`. O formulári
 
 - Textos: reescritos a partir dos fatos do site atual (serviços, Método PEP, aula experimental gratuita, unidades). Depoimentos: os trechos indicados no briefing, sem alteração. E-mail de currículos: jcensino10@gmail.com, do site atual.
 - Curso de Inglês em pequenas turmas: sem idade, horário, duração ou preço. Fica num destaque largo com a etiqueta "Novidade". O site atual não tem foto dele, então o card usa um bloco laranja com o padrão geométrico e "Hello!". Basta trocar por uma foto da turma quando houver.
-- Seja nosso professor licenciado: os quatro caminhos e o convite para conversar, sem valores, porcentagens, prazos, região ou condição de franquia. O botão abre o WhatsApp com "Olá! Tenho interesse em ser professor licenciado da Ensino 10.", e o e-mail de currículos fica abaixo.
+- Seja nosso Professor Parceiro | Licenciado: os quatro caminhos e o convite para conversar, sem valores, porcentagens, prazos, região ou condição de franquia. O botão abre o WhatsApp com "Olá! Tenho interesse em ser professor licenciado da Ensino 10.", e o e-mail de currículos fica abaixo.
 - Colégios atendidos: os 10 logos da imagem do site antigo (`Design-sem-nome.png`), recortados e remontados em 5 colunas (`colegios.jpg`) e, no celular, em 2 colunas (`colegios-celular.jpg`), para continuarem legíveis.
-- Depoimentos: nomes e textos sem mudança; no lugar das fotos, a inicial do nome num círculo laranja.
+- Depoimentos: Claudia Lopes, Viviane Milaneze, Tatiane Lopes e Téssia Souza, com foto. O da Isinha Mukami saiu a pedido do cliente, porque não há foto dela. O texto da Tatiane veio do cliente, com a digitação corrigida, e mantém "na pandemia" por decisão do Ian; os outros três não mudaram. As quatro fotos foram enviadas pelo cliente e recortadas no rosto de cada uma.
+- Unidades, na ordem e com os números que o cliente mandou: Unidade 1 | Vila Mascote, Rua Engenheiro Jorge Oliva, 555; Unidade 2 | Campo Belo, Rua Cristóvão Pereira, 1.370. Vale para os cards, o rodapé, os links do mapa e os dados estruturados.
 - Logo: o SVG vetorizado enviado pelo cliente. `logo-ensino10-branco.svg` é o mesmo desenho com "Ensino" em branco, para o topo e o rodapé, que têm fundo escuro.
 - Fotos, texturas de fundo, padrão geométrico dos cards e ícones das matérias: baixados do site atual. A foto do Apoio Escolar foi trocada por outra do site antigo (menino na sala de aula), sem texto em inglês. As composições seguem o original: no hero, a foto do menino com a máscara de pincel e o recorte dele por cima; em "Como funciona", a professora sobre o quadro, agora em laranja. As texturas já levam a camada de cor: azul-marinho no hero (o texto branco fica com contraste de 5,3:1), creme e laranja-claro nas seções. O menino e a professora têm versão AVIF (leve) e PNG para navegadores antigos.
 - Fonte Lexend: arquivo local, licença SIL OFL em `lexend-OFL.txt`.

@@ -153,7 +153,7 @@ input::-webkit-date-and-time-value{text-align:left}
 /* Depoimentos e colégios */
 .depoimentos{display:grid;gap:72px 24px;margin-top:80px}
 .depo{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:60px 24px 32px;border-radius:var(--raio);text-align:center;box-shadow:var(--sombra)}
-.avatar{position:absolute;left:50%;top:0;display:grid;place-items:center;width:88px;height:88px;border:6px solid #fff;border-radius:50%;background:var(--laranja);color:var(--escuro);font-size:34px;font-weight:700;transform:translate(-50%,-50%);box-shadow:0 8px 18px -10px rgba(38,46,107,.5)}
+.avatar{position:absolute;left:50%;top:0;display:grid;place-items:center;width:88px;height:88px;object-fit:cover;border:6px solid #fff;border-radius:50%;background:var(--laranja);color:var(--escuro);font-size:34px;font-weight:700;transform:translate(-50%,-50%);box-shadow:0 8px 18px -10px rgba(38,46,107,.5)}
 .depo h3,.unidade h3{color:inherit}
 .depo .estrelas{font-size:18px}
 .depo.laranja .estrelas{color:var(--escuro)}
