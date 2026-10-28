@@ -14,21 +14,20 @@ Acesse http://localhost:8000.
 
 ## Mudanças desta versão (para o GitHub)
 
-Novos (fotos dos depoimentos):
+Novo (configuração da hospedagem):
 
 ```text
-fotos/depo-claudia.jpg
-fotos/depo-tatiane.jpg
-fotos/depo-tessia.jpg
-fotos/depo-viviane.jpg
+.htaccess
 ```
 
-Alterados:
+Alterados (números no hero e revisão técnica para a hospedagem):
 
 ```text
 README.md
 index.html
 style.css
+script.js
+fotos/apoio-escolar.jpg
 ```
 
 Nenhum arquivo apagado. Na pasta, `git add -A` pega tudo.
@@ -39,6 +38,7 @@ Os ícones das matérias ficam em `icones/` e as fotos em `fotos/`. O resto fica
 
 ```text
 README.md
+.htaccess
 index.html
 style.css
 script.js
@@ -82,6 +82,18 @@ fotos/depo-tessia.jpg
 
 O `canonical`, as tags `og:` e os dados estruturados apontam para `https://ensino10.com.br/`. O `og:image` usa `https://ensino10.com.br/og-ensino10.png` (logo sobre fundo branco, 1200 × 630), então o site precisa ser publicado na raiz do domínio.
 
+## Hospedagem
+
+O `.htaccess` é para hospedagem Apache ou LiteSpeed; o GitHub Pages o ignora. Ele:
+
+- redireciona com 301 os endereços do WordPress antigo para a página inicial (`/wp-admin`, `/wp-content`, `/blog`, `/?p=` e páginas internas);
+- envia os cabeçalhos de segurança e uma Content-Security-Policy que só aceita arquivos do próprio domínio;
+- guarda imagens, fonte, CSS e JS em cache por 1 ano;
+- comprime as respostas com gzip;
+- não força https.
+
+Para trocar imagem, CSS ou JS depois de publicado, mude o nome do arquivo ou o `?v=`, senão o cache segura a versão antiga. O pacote para a hospedagem (`ensino10-site.zip`) é montado fora do repositório, sem o README.
+
 ## Formulário de aula experimental
 
 Todos os botões de WhatsApp levam a `https://wa.me/5511976004439`. O formulário monta uma mensagem com responsável, série, matérias, onde prefere a aula, dia, período e WhatsApp, e abre o WhatsApp para o responsável revisar e enviar. A página não envia nada sozinha e não guarda dados. O dia mínimo é calculado no fuso de São Paulo, e datas passadas são recusadas. Os campos são obrigatórios, assim como pelo menos uma matéria. O ano do rodapé também vem do JavaScript.
@@ -89,6 +101,7 @@ Todos os botões de WhatsApp levam a `https://wa.me/5511976004439`. O formulári
 ## Origem do conteúdo
 
 - Textos: reescritos a partir dos fatos do site atual (serviços, Método PEP, aula experimental gratuita, unidades). Depoimentos: os trechos indicados no briefing, sem alteração. E-mail de currículos: jcensino10@gmail.com, do site atual.
+- Números do hero, "+3 mil alunos atendidos" e "98% de aprovação": vieram do cliente. Ficam fixos, sem contador animado, e em branco, porque o laranja não passa no contraste sobre a textura.
 - Curso de Inglês em pequenas turmas: sem idade, horário, duração ou preço. Fica num destaque largo com a etiqueta "Novidade". O site atual não tem foto dele, então o card usa um bloco laranja com o padrão geométrico e "Hello!". Basta trocar por uma foto da turma quando houver.
 - Seja nosso Professor Parceiro | Licenciado: os quatro caminhos e o convite para conversar, sem valores, porcentagens, prazos, região ou condição de franquia. O botão abre o WhatsApp com "Olá! Tenho interesse em ser professor licenciado da Ensino 10.", e o e-mail de currículos fica abaixo.
 - Colégios atendidos: os 10 logos da imagem do site antigo (`Design-sem-nome.png`), recortados e remontados em 5 colunas (`colegios.jpg`) e, no celular, em 2 colunas (`colegios-celular.jpg`), para continuarem legíveis.
@@ -100,7 +113,7 @@ Todos os botões de WhatsApp levam a `https://wa.me/5511976004439`. O formulári
 
 ## Fora desta versão
 
-- Google Tag Manager, até a confirmação do cliente.
+- Google Tag Manager, até a confirmação do cliente. Se entrar, a Content-Security-Policy do `.htaccess` precisa liberar os domínios dele.
 - Seções "Nosso Blog" e Libras (inclusive o vídeo).
 - Mapas incorporados: cada unidade tem um botão "Ver no mapa", que abre o Google Maps. Assim a página fica mais leve.
 
@@ -111,3 +124,5 @@ O desenho é montado pelo `script.js` em SVG, sem imagem: uma linha de base chei
 ## Verificações feitas
 
 Chrome em 320, 390 e 1440 px: sem rolagem horizontal, fonte local carregada, alvos de toque com pelo menos 44 px, nenhum link para `#`, nenhuma imagem quebrada e nenhum erro no console. Animação do separador conferida com e sem `prefers-reduced-motion`. Os quatro depoimentos foram comparados com a versão anterior e estão iguais. Formulário testado com campo vazio, sem matéria marcada, data passada e preenchimento completo. A abertura do WhatsApp foi interceptada no teste. Num 4G simulado (150 ms de latência, 1,6 Mbit/s, CPU 4× mais lenta), a primeira pintura saiu em 0,9 s e a carga completa em 2,2 s, com 402 KB transferidos. As fotos e os ícones mais abaixo não entram nessa conta, porque carregam depois. Medição local, não da hospedagem final.
+
+A revisão técnica para a hospedagem foi comparada com a versão aprovada em 320, 390, 800 e 1440 px. Os prints da página inteira e os estilos de todos os elementos ficaram iguais. As exceções são o contorno de foco, que ficou branco nas áreas escuras, e os números do hero, que entraram depois. Com o `.htaccess` num Apache local, os endereços antigos deram um único 301 para a página inicial. A página não teve violação da CSP nem erro no console.

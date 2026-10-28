@@ -1,0 +1,50 @@
+# Ensino 10: configuração para hospedagem Apache.
+# Não força https: essa decisão fica com o responsável pela hospedagem.
+
+AddDefaultCharset utf-8
+
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType font/woff2 .woff2
+</IfModule>
+
+# Endereços do WordPress antigo vão para a página inicial (301), sem levar a query string.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^wp- /? [R=301,L]
+
+  RewriteCond %{THE_REQUEST} \.php[?\s] [NC]
+  RewriteRule \.php$ /? [R=301,L]
+
+  RewriteCond %{QUERY_STRING} (^|&)(p|page_id|cat|tag|s|m|author|attachment_id|feed|paged|post_type|preview)= [NC]
+  RewriteRule ^$ /? [R=301,L]
+
+  # Páginas internas, /blog e qualquer outro endereço que não seja arquivo do site.
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule . /? [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  # Só recursos do próprio domínio. Links para wa.me e Google Maps são navegação, que a CSP não bloqueia.
+  Header always set Content-Security-Policy "default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+
+  # Cache de 1 ano para imagens, fonte, CSS e JS; o HTML sempre confere se há versão nova.
+  <FilesMatch "\.(avif|jpe?g|png|svg|woff2|css|js)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript image/svg+xml text/plain
+  </IfModule>
+</IfModule>
