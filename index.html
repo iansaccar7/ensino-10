@@ -22,8 +22,8 @@
     <link rel="preload" href="lexend-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="textura-hero.jpg?v=2" as="image">
     <link rel="preload" href="fotos/hero-aluno.avif" as="image" type="image/avif">
-    <link rel="stylesheet" href="style.css?v=12">
-    <script src="script.js?v=5" defer></script>
+    <link rel="stylesheet" href="style.css?v=13">
+    <script src="script.js?v=6" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -65,8 +65,12 @@
     <header class="topo">
       <div class="wrap topo-in">
         <a class="marca" href="#inicio"><img src="logo-ensino10-branco.svg" alt="Ensino 10" width="210" height="65"></a>
-        <nav aria-label="Seções">
+        <button class="btn btn-branco btn-menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <nav id="menu" aria-label="Seções">
           <a href="#servicos">Serviços</a>
+          <a href="jornada-pedagogica.html">Jornada Pedagógica</a>
           <a href="#como-funciona">Como funciona</a>
           <a href="#aula-experimental">Aula experimental</a>
           <a href="#colegios">Colégios</a>
@@ -134,10 +138,10 @@
             <a class="btn btn-p" href="#aula-experimental">Agendar aula experimental</a>
           </article>
           <article class="card">
-            <img class="card-foto" src="fotos/alfabetizacao.jpg" alt="Livros de matemática da educação infantil" width="600" height="400" loading="lazy">
-            <h3>Reforço na Alfabetização</h3>
-            <p>Leitura, escrita e matemática com base firme, para acompanhar a turma sem ficar para trás.</p>
-            <a class="btn btn-p" href="#aula-experimental">Agendar aula experimental</a>
+            <img class="card-foto" src="fotos/jornada-atuacao.jpg" alt="Ilustração de uma profissional conversando com um menino e a mãe dele em volta de uma mesa, numa sala com estante de livros" width="384" height="384" loading="lazy">
+            <h3>Neuropsicopedagogia&nbsp;| Psicopedagogia&nbsp;| Pedagogia</h3>
+            <p>Jornada Pedagógica Completa, nosso método une a Neuropsicopedagogia Clínica e Reforço Escolar no mesmo lugar.</p>
+            <a class="btn btn-p" href="jornada-pedagogica.html">Saber mais</a>
           </article>
           <article class="card">
             <img class="card-foto" src="fotos/preparatorio.jpg" alt="Estudante com livro e notebook" width="600" height="400" loading="lazy">
@@ -168,7 +172,35 @@
           </article>
         </div>
       </section>
-      <div class="tetris" aria-hidden="true"></div>
+
+      <section class="secao marinho chamada" aria-labelledby="chamada-titulo">
+        <div class="wrap">
+          <p class="chamada-texto">Uma solução inovadora 360 graus integrando as funções cognitivas como (atenção, memória e foco) junto com ensino conteudista das matérias de Matemática e Português desde a Alfabetização, Fundamental e Médio.</p>
+          <h2 class="titulo" id="chamada-titulo">Passo a passo o que fazemos na Atuação Clínica&nbsp;| Técnica</h2>
+          <ol class="caminhos">
+            <li>
+              <h3>Anamnese</h3>
+              <p>Entrevista inicial estruturada e acolhedora com os Pais para compreender o histórico e os desafios a serem superados no desenvolvimento escolar e social</p>
+            </li>
+            <li>
+              <h3>Avaliação Neuropsicopedagógica</h3>
+              <p>Mapeamento padronizado das funções executivas, atenção, memória, linguagem, leitura, escrita e raciocínio lógico em crianças e adolescentes</p>
+            </li>
+            <li>
+              <h3>Intervenção Especializada</h3>
+              <p>Planos terapêuticos individualizados baseados em evidências científicas para superar dificuldades dos transtornos específicos de aprendizagem</p>
+            </li>
+            <li>
+              <h3>Ponte Escola&nbsp;– Consultório</h3>
+              <p>Elaboração de relatórios orientativos e devolutivas periódicas para coordenação e assessoria em estratégias pedagógicas&nbsp;| reforço escolar</p>
+            </li>
+          </ol>
+          <div class="professor-cta">
+            <a class="btn" href="jornada-pedagogica.html">Saber mais</a>
+          </div>
+        </div>
+      </section>
+      <div class="tetris marinho" aria-hidden="true"></div>
 
       <section class="secao creme" id="como-funciona">
         <div class="wrap duas como">

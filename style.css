@@ -125,6 +125,7 @@ address {
 .topo :focus-visible,
 .hero :focus-visible,
 .form-texto :focus-visible,
+.chamada :focus-visible,
 .unidade.marinho :focus-visible,
 .rodape :focus-visible {
   outline-color: #fff;
@@ -493,6 +494,51 @@ address {
   display: none;
 }
 
+.topo nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.topo nav a:hover {
+  color: var(--laranja);
+}
+
+/* Página atual: sublinhado, porque o laranja não passa no contraste sobre a textura do topo */
+.topo nav a[aria-current] {
+  text-decoration: underline;
+}
+
+/* No HTML o botão vem antes da lista, para o teclado chegar nos links depois de abrir; na tela, fica no fim */
+.btn-menu {
+  order: 1;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+}
+
+@media (max-width: 959.98px) {
+  .topo-in {
+    gap: 8px;
+  }
+
+  .marca {
+    margin-right: auto;
+  }
+
+  .menu-aberto nav {
+    display: grid;
+    position: absolute;
+    top: 100%;
+    left: -16px;
+    right: -16px;
+    padding: 8px 16px 16px;
+    background: var(--escuro);
+  }
+}
+
 @media (min-width: 960px) {
   .marca img {
     width: 150px;
@@ -504,16 +550,8 @@ address {
     font-size: 15px;
   }
 
-  .topo nav a {
-    display: flex;
-    align-items: center;
-    min-height: 44px;
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .topo nav a:hover {
-    color: var(--laranja);
+  .btn-menu {
+    display: none;
   }
 }
 
@@ -534,6 +572,11 @@ address {
   color: #fff;
   font-size: clamp(32px, 8.4vw, 54px);
   line-height: 1.1;
+}
+
+/* Título da Jornada: "Neuropsicopedagogia" não quebra e precisa caber na coluna */
+.hero .h1-longo {
+  font-size: clamp(24px, 7.6vw, 40px);
 }
 
 .hero-texto p {
@@ -596,6 +639,10 @@ address {
 
 .hero-foto img {
   width: 100%;
+}
+
+.hero-foto .arte-redonda {
+  border-radius: 50%;
 }
 
 .ondas {
@@ -759,6 +806,22 @@ address {
   .card-destaque {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
     gap: 40px;
+  }
+}
+
+/* Faixa da Jornada Pedagógica (home) */
+.chamada-texto {
+  max-width: 46ch;
+  margin-bottom: 56px;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (min-width: 960px) {
+  .chamada-texto {
+    font-size: 23px;
   }
 }
 
@@ -1211,6 +1274,13 @@ input::-webkit-date-and-time-value {
   color: var(--marinho);
   font-size: 15px;
   font-weight: 700;
+}
+
+.caminhos p {
+  color: var(--texto);
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .professor-cta {

@@ -6,45 +6,58 @@
 
   document.querySelector('[data-ano]').textContent = hoje().slice(0, 4);
 
+  // Menu do celular: o botão abre e fecha a lista, e tocar num link fecha.
+  const topo = document.querySelector('.topo');
+  const botaoMenu = topo.querySelector('.btn-menu');
+  const abrirMenu = aberto => {
+    topo.classList.toggle('menu-aberto', aberto);
+    botaoMenu.setAttribute('aria-expanded', aberto);
+  };
+  botaoMenu.addEventListener('click', () => abrirMenu(!topo.classList.contains('menu-aberto')));
+  topo.querySelector('nav').addEventListener('click', evento => evento.target.closest('a') && abrirMenu(false));
+
   const form = document.querySelector('#form-aula');
-  const campos = [...form.querySelectorAll('[data-label]')];
-  const dia = form.elements.dia;
-  const atualizarMinimo = () => {
-    dia.min = hoje();
-  };
+  // Só a home tem o formulário da aula experimental.
+  if (form) {
+    const campos = [...form.querySelectorAll('[data-label]')];
+    const dia = form.elements.dia;
+    const atualizarMinimo = () => {
+      dia.min = hoje();
+    };
 
-  // Fieldset junta as opções marcadas; os outros campos usam o próprio valor.
-  const valor = campo => campo.tagName === 'FIELDSET'
-    ? [...campo.querySelectorAll('input:checked')].map(opcao => opcao.value).join(', ')
-    : campo.value.trim();
+    // Fieldset junta as opções marcadas; os outros campos usam o próprio valor.
+    const valor = campo => campo.tagName === 'FIELDSET'
+      ? [...campo.querySelectorAll('input:checked')].map(opcao => opcao.value).join(', ')
+      : campo.value.trim();
 
-  const erro = campo => {
-    const texto = valor(campo);
-    if (!texto) return campo.tagName === 'FIELDSET' ? 'Escolha uma opção.' : 'Preencha este campo.';
-    if (campo.type === 'tel' && !/^\(?[1-9]\d\)?[\s.-]?9?\d{4}[\s.-]?\d{4}$/.test(texto)) return 'Informe um número válido com DDD.';
-    if (campo.type === 'date' && texto < hoje()) return 'Escolha hoje ou uma data futura.';
-    return '';
-  };
+    const erro = campo => {
+      const texto = valor(campo);
+      if (!texto) return campo.tagName === 'FIELDSET' ? 'Escolha uma opção.' : 'Preencha este campo.';
+      if (campo.type === 'tel' && !/^\(?[1-9]\d\)?[\s.-]?9?\d{4}[\s.-]?\d{4}$/.test(texto)) return 'Informe um número válido com DDD.';
+      if (campo.type === 'date' && texto < hoje()) return 'Escolha hoje ou uma data futura.';
+      return '';
+    };
 
-  const validar = campo => (campo.tagName === 'FIELDSET' ? campo.querySelector('input') : campo).setCustomValidity(erro(campo));
+    const validar = campo => (campo.tagName === 'FIELDSET' ? campo.querySelector('input') : campo).setCustomValidity(erro(campo));
 
-  atualizarMinimo();
-  window.addEventListener('pageshow', atualizarMinimo);
-  campos.forEach(campo => ['input', 'change'].forEach(evento => campo.addEventListener(evento, () => validar(campo))));
-
-  // O texto digitado só entra na URL do WhatsApp, codificado; nada vai para o HTML.
-  form.addEventListener('submit', evento => {
-    evento.preventDefault();
     atualizarMinimo();
-    campos.forEach(validar);
-    if (!form.reportValidity()) return;
-    const linhas = campos.map(campo => `${campo.dataset.label}: ${campo.type === 'date' ? valor(campo).split('-').reverse().join('/') : valor(campo)}`);
-    const url = `${WHATSAPP}?text=${encodeURIComponent(['Olá! Gostaria de agendar uma aula experimental gratuita.', '', ...linhas].join('\n'))}`;
-    const status = document.querySelector('#form-status');
-    status.querySelector('a').href = url;
-    status.hidden = false;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  });
+    window.addEventListener('pageshow', atualizarMinimo);
+    campos.forEach(campo => ['input', 'change'].forEach(evento => campo.addEventListener(evento, () => validar(campo))));
+
+    // O texto digitado só entra na URL do WhatsApp, codificado; nada vai para o HTML.
+    form.addEventListener('submit', evento => {
+      evento.preventDefault();
+      atualizarMinimo();
+      campos.forEach(validar);
+      if (!form.reportValidity()) return;
+      const linhas = campos.map(campo => `${campo.dataset.label}: ${campo.type === 'date' ? valor(campo).split('-').reverse().join('/') : valor(campo)}`);
+      const url = `${WHATSAPP}?text=${encodeURIComponent(['Olá! Gostaria de agendar uma aula experimental gratuita.', '', ...linhas].join('\n'))}`;
+      const status = document.querySelector('#form-status');
+      status.querySelector('a').href = url;
+      status.hidden = false;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  }
 
   // Separadores Tetris: linha de base cheia e pilhas de alturas diferentes, sempre iguais a cada carga (sem Math.random).
   // O atraso de cada bloco (--i) vai pelo CSSOM, que a Content-Security-Policy permite; atributo style ela bloqueia.
