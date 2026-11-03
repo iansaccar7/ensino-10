@@ -650,11 +650,6 @@ address {
   fill: var(--marinho);
 }
 
-/* Topo da Jornada aberto na home, antes do Inglês: a onda termina no branco dos Serviços */
-.jornada-aberta .ondas {
-  fill: #fff;
-}
-
 @media (min-width: 640px) {
   .hero-texto .btn {
     width: auto;
