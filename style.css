@@ -563,7 +563,8 @@ address {
   gap: 24px;
 }
 
-.hero h1 {
+.hero h1,
+.hero h2 {
   color: #fff;
   font-size: clamp(32px, 8.4vw, 54px);
   line-height: 1.1;
@@ -647,6 +648,11 @@ address {
   width: 100%;
   height: var(--onda);
   fill: var(--marinho);
+}
+
+/* Topo da Jornada aberto na home, antes do Inglês: a onda termina no branco dos Serviços */
+.jornada-aberta .ondas {
+  fill: #fff;
 }
 
 @media (min-width: 640px) {
@@ -801,22 +807,6 @@ address {
   .card-destaque {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
     gap: 40px;
-  }
-}
-
-/* Faixa da Jornada Pedagógica (home) */
-.chamada-texto {
-  max-width: 46ch;
-  margin-bottom: 56px;
-  color: #fff;
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-@media (min-width: 960px) {
-  .chamada-texto {
-    font-size: 23px;
   }
 }
 
