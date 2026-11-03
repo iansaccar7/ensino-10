@@ -506,11 +506,6 @@ address {
   color: var(--laranja);
 }
 
-/* Página atual: sublinhado, porque o laranja não passa no contraste sobre a textura do topo */
-.topo nav a[aria-current] {
-  text-decoration: underline;
-}
-
 /* No HTML o botão vem antes da lista, para o teclado chegar nos links depois de abrir; na tela, fica no fim */
 .btn-menu {
   order: 1;
