@@ -31,8 +31,9 @@ AddDefaultCharset utf-8
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-  # Só recursos do próprio domínio. Links para wa.me e Google Maps são navegação, que a CSP não bloqueia.
-  Header always set Content-Security-Policy "default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+  # Só recursos do próprio domínio e do Google Analytics (sem recursos de anúncios). Links para wa.me e Google Maps são navegação, que a CSP não bloqueia.
+  # O sha256 é o do script da tag do Google no <head> das páginas: se o script mudar, o hash muda junto.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-ku3Otma8UapPiEqiTTglkQundsi3XDelf+XO7+PDZe8='; img-src 'self' https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
 
   # Cache de 1 ano para imagens, fonte, CSS e JS; o HTML sempre confere se há versão nova.
   <FilesMatch "\.(avif|jpe?g|png|svg|woff2|css|js)$">
